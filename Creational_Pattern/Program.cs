@@ -1,4 +1,6 @@
 ﻿using System;
+using CarTypes;
+using DriverActions;
 
 namespace Creational_Pattern
 {
@@ -6,22 +8,20 @@ namespace Creational_Pattern
     {
         static void Main(string[] args)
         {
-            CarShop chisinauShop = CarShop.Instance;
-            var m5 = chisinauShop.SellCar("sedan");
-            var a3 = chisinauShop.SellCar("hatchback");
+            var sedan = new Sedan();
+            var hatchback = new Hatchback();
 
-            OtherCarShop cahulShop = OtherCarShop.instance;
+            sedan.Id = 1;
+            hatchback.Id = 2;
 
-            a3.Id = 1;
-            var a3_2015 = (ICar)a3.Clone();
-            a3_2015.Id = 2;
+            var sedanPassport = new TechnicalPassport(sedan);
+            var hatchbackPassport = new TechnicalPassport(hatchback);
 
-            Console.WriteLine(a3.Id);
-            Console.WriteLine(a3_2015.Id);
+            sedan.LastCheckDate = sedan.LastCheckDate.AddYears(-2);
+            sedanPassport.Revise();
 
-            a3.Honk();
-            a3_2015.Honk();
-             
+            var action1 = new PedalToTheMetal(sedan.brakePedal);
+            action1.HitIt();
         }
     }
 }
