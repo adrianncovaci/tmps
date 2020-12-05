@@ -25,14 +25,11 @@ namespace CarTypes
 
         public void Revise()
         {
+            Console.WriteLine("Wait 2 seconds...");
             System.Threading.Thread.Sleep(2000);
             LastCheckDate = DateTime.Now;
             Console.WriteLine("Revised");
         }
 
-        public void Push()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
