@@ -115,6 +115,6 @@ TechnicalPassport.cs:
     }
 ~~~
 ## Screenshot
-![Main Pogram](..imgs/mainprogram2.png)
+![Main Pogram](../imgs/mainprogram2.png)
 ![](../imgs/mainresult2.png)
 
