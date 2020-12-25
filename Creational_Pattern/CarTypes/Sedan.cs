@@ -1,5 +1,6 @@
 ﻿using System;
 using CarComponents;
+using Hqs;
 using Interfaces;
 
 namespace CarTypes
@@ -7,10 +8,15 @@ namespace CarTypes
     public class Sedan : ICar
     {
         public int Id { get; set; }
+        public string SoftwareVersion { get; set; } = "1.0.0";
         public DateTime LastCheckDate { get; set; } = DateTime.Now;
         public BrakePedal brakePedal { get; set; } = new BrakePedal();
         public GasPedal gasPedal { get; set; } = new GasPedal();
-        public Sedan() { }
+
+        public Sedan(int id)
+        {
+            this.Id = id;
+        }
 
         public void Honk()
         {
@@ -31,5 +37,14 @@ namespace CarTypes
             Console.WriteLine("Revised");
         }
 
+        public void SoftwareUpdate(IHq hq)
+        {
+            this.SoftwareVersion = (hq as TeslaHq).LastSoftwareVersion;
+        }
+
+        public override string ToString()
+        {
+            return $"{this.Id} version {this.SoftwareVersion}";
+        }
     }
 }

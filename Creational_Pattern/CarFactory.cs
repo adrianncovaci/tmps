@@ -13,12 +13,12 @@ namespace Creational_Pattern
             if (type.Equals("sedan", StringComparison.OrdinalIgnoreCase))
             {
                 Console.WriteLine("Creating a sedan");
-                return new Sedan();
+                return new Sedan(0);
             }
             if (type.Equals("hatchback", StringComparison.OrdinalIgnoreCase))
             {
                 Console.WriteLine("Creating a hatchback");
-                return new Hatchback();
+                return new Hatchback(0);
             }
             return null;
         }

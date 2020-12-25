@@ -1,6 +1,8 @@
 ﻿using System;
 using CarTypes;
 using DriverActions;
+using Extensions;
+using Hqs;
 
 namespace Creational_Pattern
 {
@@ -8,20 +10,33 @@ namespace Creational_Pattern
     {
         static void Main(string[] args)
         {
-            var sedan = new Sedan();
-            var hatchback = new Hatchback();
+            var sedan = new Sedan(1);
+            var hatchback = new Hatchback(2);
 
-            sedan.Id = 1;
-            hatchback.Id = 2;
+            var teslaHQ = new TeslaHq();
+            teslaHQ.Attach(sedan);
+            teslaHQ.Attach(hatchback);
 
-            var sedanPassport = new TechnicalPassport(sedan);
-            var hatchbackPassport = new TechnicalPassport(hatchback);
+            //2.0.0
+            teslaHQ.MajorUpgrade();
+            teslaHQ.NotifySoftwareUpdate();
+            teslaHQ.Detach(hatchback);
 
-            sedan.LastCheckDate = sedan.LastCheckDate.AddYears(-2);
-            sedanPassport.Revise();
+            //2.0.1
+            teslaHQ.PatchUpdate();
+            teslaHQ.NotifySoftwareUpdate();
 
-            var action1 = new PedalToTheMetal(sedan.brakePedal);
-            action1.HitIt();
+            System.Console.WriteLine(sedan.SoftwareVersion);
+            System.Console.WriteLine(hatchback.SoftwareVersion);
+
+            var cars = new CarsCollection();
+            cars.AddCar(sedan);
+            cars.AddCar(hatchback);
+
+            foreach (var car in cars)
+            {
+                System.Console.WriteLine(car.ToString());
+            }
         }
     }
 }
